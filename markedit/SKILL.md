@@ -43,6 +43,15 @@ When a user requests a "lite" build, it is located in the `lite` subfolder under
 
 The filename is identical to the standard build; do not add a `-lite` suffix.
 
+If the dist file is not found (non-200 response), fall back to the GitHub **latest release** asset:
+
+```
+https://github.com/MarkEdit-app/extension-name/releases/latest/download/extension-name-kebab-cased.js
+```
+
+For example, if `dist/markedit-preview.js` is not available in the repository, try:
+`https://github.com/MarkEdit-app/MarkEdit-preview/releases/latest/download/markedit-preview.js`
+
 If the user provides a URL ending with `.js`, use that URL directly.
 
 ## Common Tasks
@@ -114,7 +123,7 @@ When users ask questions:
 
 ## Error Handling
 
-- If extension download fails (non-200), suggest checking the extension name or URL
+- If extension download fails from both the dist URL and the latest release, suggest checking the extension name or URL
 - If `settings.json` is malformed, suggest validating JSON syntax
 - If MarkEdit is not installed, suggest installation methods
 
