@@ -45,12 +45,17 @@ The filename is identical to the standard build; do not add a `-lite` suffix.
 
 If the dist file is not found (non-200 response), fall back to the GitHub **latest release** asset:
 
+1. Fetch the latest release tag from the GitHub API:
+   `https://api.github.com/repos/MarkEdit-app/extension-name/releases/latest`
+2. Read the `tag_name` field from the response.
+3. Download the asset using:
+
 ```
-https://github.com/MarkEdit-app/extension-name/releases/latest/download/extension-name-kebab-cased.js
+https://github.com/MarkEdit-app/extension-name/releases/download/{tag_name}/extension-name-kebab-cased.js
 ```
 
-For example, if `dist/markedit-preview.js` is not available in the repository, try:
-`https://github.com/MarkEdit-app/MarkEdit-preview/releases/latest/download/markedit-preview.js`
+For example, if `dist/markedit-preview.js` is not available in the repository and the latest release tag is `v1.0.0`:
+`https://github.com/MarkEdit-app/MarkEdit-preview/releases/download/v1.0.0/markedit-preview.js`
 
 If the user provides a URL ending with `.js`, use that URL directly.
 
